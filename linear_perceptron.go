@@ -63,5 +63,33 @@ func (perceptron *Perceptron) trainPerceptron(input []int, label int) {
 	for i := 0; i < len(p.Weights); i++ {
 		perceptron.weights[i] = perceptron.weights[i] + (float64(label)-float64(prediction))*float64(input[i])
 	}
+}
 
+// Go through multiple inputs and retrain the perceptron for each of them
+func (perceptron *Perceptron) iteratePerceptron(inputs [][]int, labels []int) {
+	for idx, input := range inputs {
+		trainPerceptron(input, labels[i])
+	}
+}
+
+//Use this to test the accuracy of the model for unseen data
+//Code duplication here
+func (perceptron *Perceptron) predictLabel(input []int){
+	if len(p.Weights) != len(input) {
+		panic(fmt.Sprintf("Dimension mismatch with input dims and input layer")))
+	}
+
+	var sum float64
+	for i := 0; i < len(p.Weights); i++ {
+		sum += p.Weights[i] * float64(input[i])
+	}
+
+	var prediction float64
+	if sum >= perceptron.activation {
+		prediction = 1
+	} else {
+		prediction = 0
+	}
+
+	return prediction
 }
